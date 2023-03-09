@@ -65,3 +65,12 @@ while True :
    
 print('Maximum is', largest)
 print('Minimum is', smallest)
+
+#find slice and convert
+text = "X-DSPAM-Confidence:    0.8475"
+trouve = text.find(" ")
+#print(trouve)
+fin = (text[trouve+4 : ])
+print(fin)
+enfin = float(fin)
+print(enfin)
