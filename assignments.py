@@ -74,3 +74,31 @@ fin = (text[trouve+4 : ])
 print(fin)
 enfin = float(fin)
 print(enfin)
+
+#finding files as always
+fhand = input('Enter a file name: ')
+#fname = open('mbox-short.txt')
+try :
+    fname = open(fhand)
+except:
+    print(fhand.upper()," to you too MF")
+    quit()
+count = 0
+total = 0
+for line in fname:
+    if line.startswith('X-DSPAM-Confidence: ') :
+        #sline = line
+        #if line.startswith() :
+            #line = line.rstrip()
+        #count = count + 1
+    #count = count + 1
+        #print(line)
+        sline = (line[20:100])
+        sline = float(sline)
+        count = count + 1
+        total = total + sline
+        #print(sline)
+        #print(total)
+        #print(count)
+#print('There are ',count, 'inside this program')
+print('With a average of: ', total/count)
