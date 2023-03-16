@@ -102,3 +102,15 @@ for line in fname:
         #print(count)
 #print('There are ',count, 'inside this program')
 print('With a average of: ', total/count)
+
+#parsing through files found
+fname = open('mbox-short.txt')
+count = 0
+for line in fname:
+    if line.startswith('From:') :
+        line.rstrip()
+        count = count + 1
+        new = line.split()
+        un = new[1]
+        print(un)
+print("There were", count, "lines in the file with From as the first word")
