@@ -113,4 +113,4 @@ for line in fname:
         new = line.split()
         un = new[1]
         print(un)
-print("There were", count, "lines in the file with From as the first word")
+print("There were", count, "lines in the file with From as the first word") 
