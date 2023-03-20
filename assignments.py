@@ -113,4 +113,27 @@ for line in fname:
         new = line.split()
         un = new[1]
         print(un)
-print("There were", count, "lines in the file with From as the first word") 
+print("There were", count, "lines in the file with From as the first word")
+
+#histogram looking for number of times an email shows up
+nom = input('Enter file: ')
+if len(nom) < 1 :  nom = 'mbox-short.txt'
+fname = open(nom)
+
+dico = dict()
+for line in fname:
+    if line.startswith('From '):
+        line.rstrip()
+        un = line.split()
+        new = un[1]
+        dico[new] = dico.get(new, 0) + 1
+
+#finding the biggest
+grandmot = None
+grandcount = -1
+for emails,count in dico.items():
+    if count > grandcount :
+        grandmot = emails
+        grandcount = count
+print(grandmot, grandcount)
+  
