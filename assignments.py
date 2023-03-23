@@ -136,4 +136,34 @@ for emails,count in dico.items():
         grandmot = emails
         grandcount = count
 print(grandmot, grandcount)
+
+#sorting while using list and dictionaries interchangeably
+nom = input('Enter file: ')
+if len(nom) < 1 :  nom = 'mbox-short.txt'
+fname = open(nom)
+
+dico = dict()
+for line in fname:
+    if line.startswith('From '):
+        line.rstrip()
+        un = line.split()
+        duex = un[5]
+        trois = duex.split(':')
+        quart = trois[0]
+        new = quart
+        #print(new)
+        dico[new] = dico.get(new, 0) + 1
+#print(dico)
+
+cinq = list()
+for k,v in dico.items():
+    re = (k,v)
+    #print(re)
+    cinq.append(re)
+    #print(cinq)
+cinq = sorted(cinq)
+#cinq = cinq[0]
+#print(cinq)
+for k,v in cinq :
+    print(k,v)
   
