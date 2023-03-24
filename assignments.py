@@ -167,3 +167,21 @@ cinq = sorted(cinq)
 for k,v in cinq :
     print(k,v)
   
+#using regex
+import re
+fname = 'regex_sum_1760550.txt'
+fhand = open(fname)
+lst = list()
+for line in fhand:
+    y = line.rstrip()
+    #print(line)
+    #where regex is used
+    x = re.findall('[0-9]+', y)
+    #print(x)
+    if len(x) > 0:
+        lst.extend(x)
+        #print(x)
+for z in range(len(lst)):
+    lst[z] = int(lst[z])
+#print(lst)
+print(sum(lst))
