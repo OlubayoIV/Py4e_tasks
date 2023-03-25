@@ -185,3 +185,10 @@ for z in range(len(lst)):
     lst[z] = int(lst[z])
 #print(lst)
 print(sum(lst))
+
+#urllib
+import urllib.request, urllib.parse, urllib.error
+
+fhand = urllib.request.urlopen('https://data.pr4e.org/romeo.txt')
+for line in fhand:
+    print(line.decode().strip())
