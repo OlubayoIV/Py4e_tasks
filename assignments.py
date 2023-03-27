@@ -192,3 +192,21 @@ import urllib.request, urllib.parse, urllib.error
 fhand = urllib.request.urlopen('https://data.pr4e.org/romeo.txt')
 for line in fhand:
     print(line.decode().strip())
+
+#networking
+import urllib.request, urllib.parse, urllib.error
+from bs4 import BeautifulSoup
+import ssl
+
+#ignore SSL certificates errors
+ctx = ssl.create_default_context()
+ctx.check_hostname = False
+ctx.verify_mode = ssl.CERT_NONE
+
+fhand = urllib.request.urlopen('https://data.pr4e.org/romeo.txt', context = ctx).read()
+soup = BeautifulSoup(fhand, 'html.parser')
+
+#Retrieve all of the anchor tags
+tags = soup('a')
+for tag in tags:
+    print(tag.get('href', None))
