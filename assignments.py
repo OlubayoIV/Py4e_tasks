@@ -197,16 +197,55 @@ for line in fhand:
 import urllib.request, urllib.parse, urllib.error
 from bs4 import BeautifulSoup
 import ssl
-
 #ignore SSL certificates errors
 ctx = ssl.create_default_context()
 ctx.check_hostname = False
 ctx.verify_mode = ssl.CERT_NONE
-
 fhand = urllib.request.urlopen('https://data.pr4e.org/romeo.txt', context = ctx).read()
 soup = BeautifulSoup(fhand, 'html.parser')
-
 #Retrieve all of the anchor tags
 tags = soup('a')
 for tag in tags:
     print(tag.get('href', None))
+
+#hypertext transport protocol assignment
+    import socket
+mysock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+url = input("Enter URL : ").split("/")
+try:
+    mysock.connect((url[2], 80))
+except:
+    print("Enter The Valid URL")
+    quit()
+cmd = f'GET {url[0]}{url[1]}/{url[2]}/{url[3]} HTTP/1.0\r\n\r\n'.encode()
+mysock.send(cmd)
+while True:
+    data = mysock.recv(512)
+    if len(data) < 1:
+        break
+    print(data.decode(),end='')
+mysock.close()
+
+#parsing through numbers on a website
+import urllib.request, urllib.parse, urllib.error
+from bs4 import BeautifulSoup
+import ssl
+import re
+
+ctx = ssl.create_default_context()
+ctx.check_hostname = False
+ctx.verify_mode = ssl.CERT_NONE
+
+url = input('enter -')
+fhand = urllib.request.urlopen(url, context = ctx).read()
+num = BeautifulSoup(fhand, 'html.parser')
+
+count = 0
+tags = num('span')
+for tag in tags:
+    x = str(tag)
+    y = re.findall('[0-9]+', x)
+    for z in y:
+        z = int(z)
+        count = count + z
+print(count)
