@@ -209,7 +209,7 @@ for tag in tags:
     print(tag.get('href', None))
 
 #hypertext transport protocol assignment
-    import socket
+import socket
 mysock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 url = input("Enter URL : ").split("/")
 try:
@@ -249,3 +249,50 @@ for tag in tags:
         z = int(z)
         count = count + z
 print(count)
+
+#using json for small file
+import json
+c = '''
+{
+    "name" : "Ayo",
+    "phone" : {
+        "type" : "intl",
+        "number" : "+221777083300"
+        },
+    "email" : {
+        "hide" : "yes"
+        }
+}'''
+y = json.loads(c)
+print('Name:', y['name'])
+print('Attr:', y['email']['hide'])
+
+#or while using xml for a much larger file
+
+import xml.etree.ElementTree as ET
+x = '''
+<people>
+    <me>
+        <moi>
+            <name>Ayo</name>
+            <phone type = 'intl'>+221777083300</phone>
+            <email hide = 'yes'/>
+        </moi>
+        <moi>
+            <name>Bri</name>
+            <phone type = 'intl'>+2348163473440</phone>
+            <email hide = 'oui'/>
+        </moi>
+    </me>
+</people>
+'''
+y = ET.fromstring(x)
+new = y.findall('me/moi')
+#print("People's count:", len(new))
+#loop through
+for z in new:
+    print('Name:', z.find('name').text)
+    print('Attr:', z.find('email').get('hide'))
+    print('Numero de telephone:', z.find('phone').text)
+
+#FINALEMENT. MAINTENANT LA PROCHAINE.
